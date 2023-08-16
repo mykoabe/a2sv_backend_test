@@ -3,7 +3,6 @@ import Project from "../models/Project";
 
 // @desc    Get all projects
 // @route   GET /api/v1/projects
-// @access  Private/Admin
 export const getProjects = async (
   req: Request,
   res: Response,
@@ -23,7 +22,6 @@ export const getProjects = async (
 
 // @desc    Get single project
 // @route   GET /api/v1/projects/:id
-// @access  Private/Admin
 export const getProject = async (
   req: Request,
   res: Response,
@@ -42,7 +40,6 @@ export const getProject = async (
 
 // @desc    Create project
 // @route   POST /api/v1/projects
-// @access  Private/Admin
 export const createProject = async (
   req: Request,
   res: Response,
@@ -61,21 +58,20 @@ export const createProject = async (
 
 // @desc    Update project
 // @route   PUT /api/v1/projects/:id
-// @access  Private/Admin
 export const updateProject = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const task = await Project.findByIdAndUpdate(req.params.id, req.body, {
+    const project = await Project.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
 
     res.status(200).json({
       success: true,
-      data: task,
+      data: project,
     });
   } catch (error) {
     return next(error);
@@ -84,7 +80,6 @@ export const updateProject = async (
 
 // @desc    Delete project
 // @route   DELETE /api/v1/projects/:id
-// @access  Private/Admin
 export const deleteProject = async (
   req: Request,
   res: Response,

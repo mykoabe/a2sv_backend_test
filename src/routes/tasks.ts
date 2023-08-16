@@ -7,7 +7,7 @@ import {
   updateTask
 } from "../controllers/tasks";
 const router = express.Router({ mergeParams: true });
-import { protect, authorize } from "../middlewares/auth";
+const { protect } = require("../middlewares/auth");
 
 router.route("/").get(protect, getTasks).post(protect, createTask);
 router.route("/:id").get(protect, getTask).put(protect, updateTask).delete(protect, deleteTask);

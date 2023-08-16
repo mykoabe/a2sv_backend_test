@@ -19,6 +19,7 @@ const TaskSchema = new Schema({
   priority: { type: String, required: true },
   labels: [{ type: String, required: true }],
   project: { type: Schema.Types.ObjectId, ref: "Project", required: true },
+  user: { type: Schema.Types.ObjectId, ref: "User", required: true },
 });
 
 const Task = model<ITask>("Task", TaskSchema);

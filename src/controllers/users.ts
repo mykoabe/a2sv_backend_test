@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import User from "../models/user.";
+import User from "../models/user";
 
 // @desc    Get all users
 // @route   GET /api/v1/users

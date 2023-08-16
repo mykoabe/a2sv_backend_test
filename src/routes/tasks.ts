@@ -6,9 +6,10 @@ import {
   deleteTask, 
   updateTask
 } from "../controllers/tasks";
+const router = express.Router({ mergeParams: true });
+import { protect, authorize } from "../middlewares/auth";
 
-const router = express.Router();
-router.route("/").get(getTasks).post(createTask);
-router.route("/:id").get(getTask).put(updateTask).delete(deleteTask);
+router.route("/").get(protect, getTasks).post(protect, createTask);
+router.route("/:id").get(protect, getTask).put(protect, updateTask).delete(protect, deleteTask);
 
 export default router;

@@ -1,4 +1,3 @@
-// tasks fields title, description, dueDate, status, priority, labels
 import { Schema, model, Document } from "mongoose";
 
 export interface ITask extends Document {
@@ -9,6 +8,7 @@ export interface ITask extends Document {
   priority: string;
   labels: string[];
   project: string;
+  user: string;
 }
 
 const TaskSchema = new Schema({

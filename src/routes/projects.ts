@@ -7,8 +7,17 @@ import {
   updateProject,
 } from "../controllers/projects";
 
-const router = express.Router();
-router.route("/").get(getProjects).post(createProject);
-router.route("/:id").get(getProject).put(updateProject).delete(deleteProject);
+import taskRouter from "./tasks";
+import { protect, authorize } from "../middlewares/auth";
+
+const router = express.Router({ mergeParams: true });
+router.use("/:projectId/tasks", taskRouter);
+
+router.route("/").get(protect, getProjects).post(protect, createProject);
+router
+  .route("/:id")
+  .get(protect, getProject)
+  .put(protect, updateProject)
+  .delete(protect, deleteProject);
 
 export default router;

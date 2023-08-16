@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import User from "../models/user.";
+import User from "../models/user";
 import ErrorResponse from "../utils/errorResponse";
 import bcrypt from "bcryptjs";
 
@@ -26,7 +26,11 @@ export const register = async (
 
 // @desc      login user
 // @route     POST /api/v1/auth/login
-export const login = async (req: Request, res: Response, next: NextFunction) => {
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { email, password } = req.body;
 
   // Validate emil & password
@@ -52,7 +56,11 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
 // @desc      logout user
 
-export const logout = async (req: Request, res: Response, next: NextFunction) => {
+export const logout = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     res.cookie("token", "none", {
       expires: new Date(Date.now() + 10 * 1000),

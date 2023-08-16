@@ -3,7 +3,6 @@ import User from "../models/user";
 
 // @desc    Get all users
 // @route   GET /api/v1/users
-// @access  Private/Admin
 export const getUsers = async (
   req: Request,
   res: Response,
@@ -23,7 +22,6 @@ export const getUsers = async (
 
 // @desc    Get single user
 // @route   GET /api/v1/users/:id
-// @access  Private/Admin
 export const getUser = async (
   req: Request,
   res: Response,
@@ -42,7 +40,6 @@ export const getUser = async (
 
 // @desc    Create user
 // @route   POST /api/v1/users
-// @access  Private/Admin
 export const createUser = async (
   req: Request,
   res: Response,
@@ -61,7 +58,6 @@ export const createUser = async (
 
 // @desc    Update user
 // @route   PUT /api/v1/users/:id
-// @access  Private/Admin
 export const updateUser = async (
   req: Request,
   res: Response,
@@ -79,7 +75,6 @@ export const updateUser = async (
 
 // @desc    Delete user
 // @route   DELETE /api/v1/users/:id
-// @access  Private/Admin
 export const deleteUser = async (
   req: Request,
   res: Response,

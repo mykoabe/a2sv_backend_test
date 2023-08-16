@@ -56,6 +56,7 @@ export const createProject = async (
   }
 };
 
+
 // @desc    Update project
 // @route   PUT /api/v1/projects/:id
 export const updateProject = async (
@@ -64,10 +65,30 @@ export const updateProject = async (
   next: NextFunction
 ) => {
   try {
-    const project = await Project.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const projectId = req.params.id;
+    const updatedData = req.body;
+
+    // Find the project by ID
+    const project = await Project.findById(projectId);
+
+    if (!project) {
+      return res.status(404).json({
+        success: false,
+        error: "Project not found",
+      });
+    }
+
+    // Check if the logged-in user is the project owner
+    if (project.owner.toString() !== req.user?._id.toString()) {
+      return res.status(403).json({
+        success: false,
+        error: "You are not authorized to update this project",
+      });
+    }
+
+    // Update the project data
+    Object.assign(project, updatedData);
+    await project.save();
 
     res.status(200).json({
       success: true,
@@ -78,7 +99,6 @@ export const updateProject = async (
   }
 };
 
-// @desc    Delete project
 // @route   DELETE /api/v1/projects/:id
 export const deleteProject = async (
   req: Request,
@@ -86,14 +106,28 @@ export const deleteProject = async (
   next: NextFunction
 ) => {
   try {
-    const project = await Project.findById(req.params.id);
+    const projectId = req.params.id;
+
+    // Find the project by ID
+    const project = await Project.findById(projectId);
+
     if (!project) {
       return res.status(404).json({
         success: false,
-        error: "No project found",
+        error: "Project not found",
       });
     }
+
+    // Check if the logged-in user is the project owner
+    if (project.owner.toString() !== req.user?._id.toString()) {
+      return res.status(403).json({
+        success: false,
+        error: "You are not authorized to delete this project",
+      });
+    }
+
     await project.deleteOne();
+
     return res.status(200).json({
       success: true,
       data: {},

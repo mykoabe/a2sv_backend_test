@@ -1,0 +1,36 @@
+# Dependency directories
+node_modules/
+# Output of build tools
+dist/
+build/
+out/
+# Environment configuration
+.env
+.env.local
+.env.*.local
+.env.*.local
+# npm lock file
+package-lock.json
+# Yarn lock file
+yarn.lock
+# Log files
+*.log
+# Cache directories
+.npm
+.pnp
+.pnp.js
+# Editor directories
+.vscode/
+.idea/
+# Mac files
+.DS_Store
+# Windows Thumbs.db files
+Thumbs.db
+# ESLint cache
+.eslintcache
+# TypeScript configuration cache
+*.tsbuildinfo
+# Next.js build output
+.next/
+# Nuxt.js build output
+.nuxt/

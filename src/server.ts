@@ -6,9 +6,11 @@ dotenv.config({ path: "./src/config/config.env" });
 
 // Connect to database
 connectDatabase();
+
 // Route Files
-import bootcamps from "./routes/bootcamps";
 import users from "./routes/users";
+import tasks from "./routes/tasks";
+import projects from "./routes/projects";
 
 const app = express();
 
@@ -16,8 +18,9 @@ const app = express();
 app.use(express.json());
 
 // mount routers
-app.use("/api/v1/bootcamps", bootcamps);
+app.use("/api/v1/tasks", tasks);
 app.use("/api/v1/users", users);
+app.use("/api/v1/projects", projects);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
